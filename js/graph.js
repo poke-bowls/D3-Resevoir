@@ -34,7 +34,7 @@ function InitChart() {
     x: 100,
     y: 25
   }, {
-    x: 100,
+    x: 500,
     y: 25
   },
   ];

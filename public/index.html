@@ -25,13 +25,13 @@
             <label for="xRate">
               Rate X = <span id="xRate-value"></span>
             </label>
-            <input onblur="findRate()" type="number" min="0" name="rate">
+            <input onblur="findRate();findValve()" type="number" min="0" name="rate" id="xRate-value">
           </p>
           <p>
             <label for="yRate">
               Rate Y = <span id="xRate-value"></span>
             </label>
-            <input onblur="findRate()" type="number" min="0" name="rate">
+            <input onblur="findRate();findValve()" type="number" min="0" name="rate" id="yRate-value">
           </p>
           <p>
             <label for="zRate">
@@ -48,13 +48,13 @@
             <label for="valveX">
               Valve X = <span class="valveX-value"></span>
             </label>
-            <input type="number" readonly="readonly" id="">
+            <input type="number" readonly="readonly" id="xValve-value">
           </p>
           <p>
             <label for="valveY">
               Valve Y = <span class="valveY-value"></span>
             </label>
-            <input type="number" readonly="readonly" id="">
+            <input type="number" readonly="readonly" id="yValve-value">
           </p>
         </div><!-- valve-container -->
       </div><!-- columns -->

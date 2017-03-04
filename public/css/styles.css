@@ -9,8 +9,20 @@ h1 {
 p {
   color: aqua; }
 
+.content-container {
+  height: 100vh;
+  width: 100%;
+  background-color: orange; }
+
+.header-container {
+  text-align: center; }
+
+.columns {
+  height: 50%;
+  text-align: center;
+  margin: auto; }
+
 #line-graph {
-  margin-left: 25px;
   height: 450px;
   width: 450px; }
 

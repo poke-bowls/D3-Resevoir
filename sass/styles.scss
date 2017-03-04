@@ -1,10 +1,49 @@
+// BASE STYLESHEET
+
+@import 'variables';
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: Arial;
+  font-size: 50px;
+}
 
 p {
   color: aqua;
 }
 
+#line-graph {
+  margin-left: 25px;
+  height: 450px;
+  width: 450px;
+}
+
 .content-container {
   height: 100vh;
   width: 100%;
-  background-color: yellow;
+}
+
+.axispath, .axisline
+{
+  fill: none;
+  stroke: #777;
+  shape-rendering: crispEdges;
+}
+
+.axistext
+{
+  font-family: 'Arial';
+  font-size: 13px;
+}
+.tick
+{
+  stroke-dasharray: 1, 2;
+}
+.bar
+{
+  fill: FireBrick;
 }

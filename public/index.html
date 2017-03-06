@@ -31,7 +31,7 @@
             <label for="yRate">
               Rate Y = <span id="yRate-value"></span>
             </label>
-            <input onblur="findRate();findValve();findPipeSize()" type="number" min="0" name="rate" id="yRateInput">
+            <input onblur="findRate();findValve();findPipeSize();findBarData();InitChart()" type="number" min="0" name="rate" id="yRateInput">
           </p>
           <p>
             <label for="zRate">
@@ -65,19 +65,19 @@
             <label for="pipeX">
               Pipe X = <span id="pipeX-value"></span>
             </label>
-            <input type="number" readonly="readonly" id="xPipeValue" value="0">
+            <input type="number" readonly="readonly" id="xPipeValue" value="0" name="pipe">
           </p>
           <p>
             <label for="pipeY">
               Pipe Y = <span id="pipeY-value"></span>
             </label>
-            <input type="number" readonly="readonly" id="yPipeValue" value="0">
+            <input type="number" readonly="readonly" id="yPipeValue" value="0" name="pipe">
           </p>
           <p>
             <label for="pipeZ">
               Pipe Z = <span id="pipeZ-value"></span>
             </label>
-            <input type="number" readonly="readonly" id="zPipeValue" value="0">
+            <input type="number" readonly="readonly" id="zPipeValue" value="0" name="pipe">
           </p>
         </div><!-- pipe-container -->
       </div><!-- columns -->
@@ -85,7 +85,7 @@
 
     <div class="row">
       <div class="col-md-5 columns">
-        <svg id="line-graph"></svg>
+        <svg id="bar-graph"></svg>
       </div><!-- columns -->
       <div class="col-md-7 columns">
         <svg id="resevoir"></svg>

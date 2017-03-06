@@ -33,6 +33,7 @@ function findPipeSize() {
   var size = 0;
   var zSize = 0;
   var arr = document.getElementsByName('rate');
+  var z = document.getElementById('total').value;
 
   for(var i = 0; i < arr.length; i++) {
     if(parseInt(arr[i].value) && document.getElementById('xRateInput').id == arr[i].id) {
@@ -53,7 +54,38 @@ function findPipeSize() {
       }
     }
   }
-  zSize += Math.ceil((document.getElementById('total').value * 4468.56)/4.16);
-  document.getElementById('zPipeValue').value = zSize;
+  zSize = Math.ceil((parseInt(z) * 4468.56)/4.16);
+  for(var l = 0; l < pipeSizes.length; l++) {
+    if(zSize <= pipeSizes[l]) {
+      document.getElementById('zPipeValue').value = pipeSizes[l];
+      break;
+    }
+  }
+}
+
+var rateArr = [];
+var pipeArr = [];
+var plotData = [];
+var rateXY,
+    rateZ,
+    pipes;
+
+function findBarData() {
+  var rateXY = document.getElementsByName('rate');
+  var rateZ = document.getElementById('total').value;
+  var pipes = document.getElementsByName('pipe');
+
+  for(var i = 0; i < rateXY.length; i++) {
+    rateArr.push(rateXY[i].value);
+  }
+  rateArr.push(rateZ);
+  for(var j = 0; j < pipes.length; j++) {
+    pipeArr.push(pipes[j].value);
+  }
+
+  for(var k = 0; k < rateArr.length; k++) {
+    plotData.push({x: parseInt(rateArr[k]), y: parseInt(pipeArr[k])});
+  }
+  plotData = plotData;
 
 }

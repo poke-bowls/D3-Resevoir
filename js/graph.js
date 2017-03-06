@@ -2,44 +2,10 @@
 InitChart();
 
 function InitChart() {
+  var reset = d3.select('#bar-graph');
+  reset.selectAll('*').remove();
 
-  var lineData = [{
-    x: 1,
-    y: 8
-  }, {
-    x: 20,
-    y: 10
-  }, {
-    x: 40,
-    y: 12
-  }, {
-    x: 60,
-    y: 16
-  }, {
-    x: 80,
-    y: 20
-  }, {
-    x: 100,
-    y: 25
-  }, {
-    x: 100,
-    y: 25
-  }, {
-    x: 100,
-    y: 25
-  }, {
-    x: 100,
-    y: 25
-  }, {
-    x: 100,
-    y: 25
-  }, {
-    x: 500,
-    y: 25
-  },
-  ];
-
-  var viz = d3.select("#line-graph"),
+  var viz = d3.select("#bar-graph"),
     WIDTH = 450,
     HEIGHT = 450,
     MARGINS = {
@@ -48,10 +14,10 @@ function InitChart() {
       bottom: 20,
       left: 20
     },
-    xRange = d3.scaleBand().rangeRound([MARGINS.left, WIDTH - MARGINS.right]).padding(0.1).domain(lineData.map(function(d) {
+    xRange = d3.scaleBand().rangeRound([MARGINS.left, WIDTH - MARGINS.right]).padding(0.1).domain(plotData.map(function(d) {
       return d.x;
     })),
-    yRange = d3.scaleLinear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,d3.max(lineData, function(d) {
+    yRange = d3.scaleLinear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,d3.max(plotData, function(d) {
       return d.y;
     })]),
     xAxis = d3.axisBottom()
@@ -72,7 +38,7 @@ function InitChart() {
     .call(yAxis);
 
   viz.selectAll('rect')
-    .data(lineData)
+    .data(plotData)
     .enter()
     .append('rect')
     .attr('x', function(d) {
@@ -85,6 +51,14 @@ function InitChart() {
     .attr('height', function(d) {
       return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
     })
-    .attr('fill', 'aqua');
+    .attr('fill', 'aqua')
+    .on('mouseover', function(d) {
+      d3.select(this)
+        .attr('fill', 'magenta');
+    })
+    .on('mouseout', function(d) {
+      d3.select(this)
+        .attr('fill', 'aqua');
+    });
 
 }

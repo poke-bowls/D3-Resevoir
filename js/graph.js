@@ -48,11 +48,9 @@ function InitChart() {
       bottom: 20,
       left: 20
     },
-    xRange = d3.scaleLinear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineData, function(d) {
+    xRange = d3.scaleBand().rangeRound([MARGINS.left, WIDTH - MARGINS.right]).padding(0.1).domain(lineData.map(function(d) {
       return d.x;
-    }), d3.max(lineData, function(d) {
-      return d.x;
-    })]),
+    })),
     yRange = d3.scaleLinear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,d3.max(lineData, function(d) {
       return d.y;
     })]),
@@ -72,5 +70,21 @@ function InitChart() {
     .attr('class', 'y axis')
     .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
     .call(yAxis);
+
+  viz.selectAll('rect')
+    .data(lineData)
+    .enter()
+    .append('rect')
+    .attr('x', function(d) {
+      return xRange(d.x);
+    })
+    .attr('y', function(d) {
+      return yRange(d.y);
+    })
+    .attr('width', xRange.bandwidth())
+    .attr('height', function(d) {
+      return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
+    })
+    .attr('fill', 'aqua');
 
 }

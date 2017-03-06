@@ -46,26 +46,6 @@ function InitResevoir() {
     });
 
   // Draw valves
-  var valveSizes = [20,19];
-  // var valves = drawContainer.selectAll('circle')
-  //   .data(valveSizes)
-  //   .enter()
-  //   .append('circle');
-
-  // var valveAttr = valves
-  //   .attr('cx', w*2/3)
-  //   .attr('cy', function(d) {
-  //     var yPos;
-  //     if( d === 19 ) { yPos = 200;
-  //     } else { yPos = 250; }
-  //     return yPos;
-  //   })
-  //   .attr('r', function(d) { return d; })
-  //   .style('fill', 'none')
-  //   .transition()
-  //   .delay(1000)
-  //     .duration(1500)
-  //   .style('fill', 'white');
 
   var valve1 = drawContainer.append('circle')
     .attr('cx', w*2/3)
@@ -109,11 +89,16 @@ function InitResevoir() {
 
   var valveRate = drawContainer.append('line')
     .attr('x1', w*2/3)
-    .attr('y1', 270)
+    .attr('y1', 100)
     .attr('x2', w*2/3)
     .attr('y2', 100)
     .attr('stroke-width', 2)
-    .attr('stroke', 'white');
+    .attr('stroke', 'white')
+    .transition()
+      .delay(2500)
+      .duration(1000)
+    .attr('x2', w*2/3)
+    .attr('y2', 270);
 
   // Draw arcs for input - valve
   function generateSVGSegment(x, y, r, startAngle, endAngle) {
@@ -178,8 +163,13 @@ function InitResevoir() {
   var zRate = drawContainer.append('line')
     .attr('x1', w*2/3)
     .attr('y1', 100)
-    .attr('x2', w)
+    .attr('x2', w*2/3)
     .attr('y2', 100)
     .attr('stroke-width', 2)
-    .attr('stroke', 'green');
+    .attr('stroke', 'green')
+    .transition()
+      .delay(2500)
+      .duration(1000)
+    .attr('x2', w)
+    .attr('y2', 100);
 }

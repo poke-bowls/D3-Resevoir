@@ -130,7 +130,7 @@ function InitResevoir() {
     .style('fill', 'none')
     .style('stroke', 'white')
     .attr('transform', 'translate(50,50)')
-    .attr('d', 'M 300,200 A 50,50 0 0,1 402,200');
+    .attr('d', 'M 245,200 A 50,50 0 0,1 340,200');
 
   var lineX = drawContainer.append('path')
     .attr('d', 'M 0,150 A 50,50 0 0,1 0,150')
@@ -138,7 +138,7 @@ function InitResevoir() {
       .delay(1000)
       .duration(1000)
     .attr('id', 'inputX')
-    .attr('d', 'M 300,150 A 50,50 0 0,1 402,150')
+    .attr('d', 'M 245,150 A 50,50 0 0,1 340,150')
     .attr('transform', 'translate(50,50)')
     .style('fill', 'none')
     .style('stroke', 'white');

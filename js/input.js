@@ -86,6 +86,5 @@ function findBarData() {
   for(var k = 0; k < rateArr.length; k++) {
     plotData.push({x: parseInt(rateArr[k]), y: parseInt(pipeArr[k])});
   }
-  plotData = plotData;
 
 }

@@ -6,7 +6,7 @@ function InitChart() {
   reset.selectAll('*').remove();
 
   var viz = d3.select("#bar-graph"),
-    WIDTH = 450,
+    WIDTH = 500,
     HEIGHT = 450,
     MARGINS = {
       top: 20,

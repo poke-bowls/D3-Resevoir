@@ -5,9 +5,9 @@ Coding challenge focused around dynamic data visualization.  This project is the
 Setup and Run:
   - Clone repo
   - In terminal:
-      install dependencies > ```npm i```
-      install local environment >```npm install -g http-server```
-      to run >```http-server &``` in cloned repo
+      - install dependencies > ```npm i```
+      - install local environment >```npm install -g http-server```
+      - to run >```http-server &``` in cloned repo
   - Navigate (Chrome preferred) to (http://localhost:8080)
 
 Info:

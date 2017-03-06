@@ -29,9 +29,13 @@ function InitResevoir() {
     .enter()
     .append('line');
   var rateLineAttr = inRes
-    .attr('x1', 0)
+    .attr('x1',0)
     .attr('y1', function(d){ return d; })
-    .attr('x2', w/2)
+    .attr('x2',0)
+    .attr('y2', function(d){ return d; })
+    .transition()
+    .duration(1500)
+    .attr('x2',w/2)
     .attr('y2', function(d){ return d; })
     .attr('stroke-width', 2)
     .attr('stroke', function(d){
@@ -43,19 +47,64 @@ function InitResevoir() {
 
   // Draw valves
   var valveSizes = [20,19];
-  var valves = drawContainer.selectAll('circle')
-    .data(valveSizes)
-    .enter()
-    .append('circle');
-  var valveAttr = valves
+  // var valves = drawContainer.selectAll('circle')
+  //   .data(valveSizes)
+  //   .enter()
+  //   .append('circle');
+
+  // var valveAttr = valves
+  //   .attr('cx', w*2/3)
+  //   .attr('cy', function(d) {
+  //     var yPos;
+  //     if( d === 19 ) { yPos = 200;
+  //     } else { yPos = 250; }
+  //     return yPos;
+  //   })
+  //   .attr('r', function(d) { return d; })
+  //   .style('fill', 'none')
+  //   .transition()
+  //   .delay(1000)
+  //     .duration(1500)
+  //   .style('fill', 'white');
+
+  var valve1 = drawContainer.append('circle')
     .attr('cx', w*2/3)
-    .attr('cy', function(d) {
-      var yPos;
-      if( d === 19 ) { yPos = 200;
-      } else { yPos = 250; }
-      return yPos;
-    })
-    .attr('r', function(d) { return d; })
+    .attr('cy', 200)
+    .attr('r', 20)
+    .style('fill', 'none')
+    .transition()
+    .delay(3000)
+      .duration(1000)
+    .style('fill', 'white');
+
+  var valve2 = drawContainer.append('circle')
+    .attr('cx', w*2/3)
+    .attr('cy', 250)
+    .attr('r', 20)
+    .style('fill', 'none')
+    .transition()
+    .delay(3000)
+      .duration(1000)
+    .style('fill', 'white');
+
+  var dynamo1 = drawContainer.append('path')
+    .attr('d', 'M 0,250 A 50,50 0 0,1 0,250')
+    .transition()
+      .delay(2000)
+      .duration(1000)
+      .attrTween('d', function() {
+        return interpolateSVGSegment(w*2/3, 250, 20, 0, 360);
+      })
+    .style('fill', 'white');
+
+  var dynamo2 = drawContainer.append('path')
+    .attr('d', 'M 0,200 A 50,50 0 0,1 0,200')
+    .transition()
+      .delay(2000)
+      .duration(1000)
+      .attrTween('d', function() {
+        return interpolateSVGSegment(w*2/3, 200, 20, 0, 360);
+      })
     .style('fill', 'white');
 
   var valveRate = drawContainer.append('line')
@@ -67,15 +116,44 @@ function InitResevoir() {
     .attr('stroke', 'white');
 
   // Draw arcs for input - valve
-  drawContainer.append('path')
+  function generateSVGSegment(x, y, r, startAngle, endAngle) {
+
+   // convert angles to Radians
+   startAngle *= (Math.PI / 180);
+   endAngle *= (Math.PI / 180);
+
+   var largeArc = endAngle - startAngle <= Math.PI ? 0 : 1; // 1 if angle > 180 degrees
+   var sweepFlag = 1; // is arc to be drawn in +ve direction?
+
+   return ['M', x, y, 'L', x + Math.sin(startAngle) * r, y - (Math.cos(startAngle) * r),
+           'A', r, r, 0, largeArc, sweepFlag, x + Math.sin(endAngle) * r, y - (Math.cos(endAngle) * r), 'Z'
+          ].join(' ');
+  }
+
+  function interpolateSVGSegment(x, y, r, startAngle, endAngle) {
+   return function(t) {
+     return generateSVGSegment(x, y, r, startAngle, startAngle + ((endAngle - startAngle) * t));
+   };
+  }
+
+  var lineY = drawContainer.append('path')
+    .attr('d', 'M 0,200 A 50,50 0 0,1 0,200')
+    .transition()
+      .delay(1000)
+      .duration(1000)
     .attr('id', 'inputY')
-    .attr('d', 'M 302,200 A 50,50 0 0,1 402,200')
-    .attr('transform', 'translate(50,50)')
     .style('fill', 'none')
-    .style('stroke', 'white');
-  drawContainer.append('path')
+    .style('stroke', 'white')
+    .attr('transform', 'translate(50,50)')
+    .attr('d', 'M 300,200 A 50,50 0 0,1 402,200');
+
+  var lineX = drawContainer.append('path')
+    .attr('d', 'M 0,150 A 50,50 0 0,1 0,150')
+    .transition()
+      .delay(1000)
+      .duration(1000)
     .attr('id', 'inputX')
-    .attr('d', 'M 302,150 A 50,50 0 0,1 402,150')
+    .attr('d', 'M 300,150 A 50,50 0 0,1 402,150')
     .attr('transform', 'translate(50,50)')
     .style('fill', 'none')
     .style('stroke', 'white');

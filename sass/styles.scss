@@ -1,7 +1,5 @@
 // BASE STYLESHEET
 
-@import 'variables';
-
 body {
   margin: 0;
   padding: 0;
@@ -13,7 +11,7 @@ h1 {
 }
 
 p {
-  color: aqua;
+  color: white;
 }
 
 .content-container {
@@ -34,9 +32,10 @@ p {
   margin: auto;
 }
 
-#line-graph {
+#bar-graph {
   height: 450px;
-  width: 450px;
+  width: 500px;
+  padding-left: 45px;
 }
 
 .pipe-container {
@@ -48,7 +47,8 @@ p {
 #resevoir {
   height:450px;
   width: 100%;
-  background-color: red;
+  background-color: black;
+  border: 10px solid aqua;
 }
 
 .content-container {
@@ -71,8 +71,4 @@ p {
 .tick
 {
   stroke-dasharray: 1, 2;
-}
-.bar
-{
-  fill: FireBrick;
 }

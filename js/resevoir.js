@@ -1,6 +1,0 @@
-
-InitResevoir();
-
-function InitResevoir() {
-
-}
